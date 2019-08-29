@@ -1,16 +1,44 @@
 import 'package:flutter/material.dart';
+import 'login_screen.dart';
+import 'registration_screen.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:messaging_app/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  String id = 'welcome_screen';
+  static String id = 'welcome_screen';
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(duration: Duration(seconds: 1), vsync: this);
+    animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
+        .animate(controller);
+    controller.forward();
+
+    controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: animation.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: Column(
@@ -19,42 +47,31 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Container(
-                    child: Image.asset('images/logo.png'),
-                    height: 60), //logo image
-                Text(
-                  'Message App',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
+                Hero(
+                  tag: 'logo',
+                  child: Container(
+                      child: Image.asset('images/logo.png'), height: 60),
+                ), //logo image
+                TypewriterAnimatedTextKit(
+                  text: ['Message App'],
+                  textStyle:
+                      TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
                 )
               ],
             ),
             SizedBox(height: 48),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Material(
-                elevation: 5,
+            RoundedButton(
                 color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30),
-                child: MaterialButton(
-                  onPressed: null,
-                  minWidth: 200,
-                  height: 42,
-                  child: Text('Log In'),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30),
-                elevation: 5,
-                child: MaterialButton(
-                    onPressed: null,
-                    minWidth: 200,
-                    height: 42,
-                    child: Text('Register')),
-              ),
+                title: 'Log In',
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginScreen.id);
+                }),
+            RoundedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
+              color: Colors.blueAccent,
+              title: 'Register',
             )
           ],
         ),

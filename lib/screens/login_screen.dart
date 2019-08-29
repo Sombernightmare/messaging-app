@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:messaging_app/rounded_button.dart';
+import 'package:messaging_app/constants.dart';
 
 class LoginScreen extends StatefulWidget {
-  final String id = 'login_screen';
+  static String id = 'login_screen';
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -17,66 +19,29 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: 200,
-              child: Image.asset('images/logo.png'),
+            Hero(
+              tag: 'logo',
+              child: Container(
+                height: 200,
+                child: Image.asset('images/logo.png'),
+              ),
             ),
             SizedBox(
               height: 48,
             ),
             TextField(
-              decoration: InputDecoration(
-                  hintText: 'Enter your email...',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(32)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.lightBlueAccent, width: 1),
-                    borderRadius: BorderRadius.all(Radius.circular(32)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2),
-                      borderRadius: BorderRadius.all(Radius.circular(32)))),
+              decoration: kTextFieldDecoration.copyWith(
+                  hintText: 'Enter your email...'),
               onChanged: (value) {},
             ),
             SizedBox(height: 8),
             TextField(
-              decoration: InputDecoration(
-                  hintText: 'Enter your password...',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(32)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.lightBlueAccent, width: 1),
-                    borderRadius: BorderRadius.all(Radius.circular(32)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2),
-                      borderRadius: BorderRadius.all(Radius.circular(32)))),
+              decoration: kTextFieldDecoration.copyWith(
+                  hintText: "Enter your password..."),
             ),
             SizedBox(height: 24),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Material(
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.all(Radius.circular(30)),
-                elevation: 5,
-                child: MaterialButton(
-                  onPressed: () {},
-                  minWidth: 200,
-                  height: 42,
-                  child: Text('Log In'),
-                ),
-              ),
-            )
+            RoundedButton(
+                onPressed: null, title: 'Log In', color: Colors.lightBlueAccent)
           ],
         ),
       ),
