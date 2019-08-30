@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "473805425150",
+    "firebase_url": "https://message-app-4b3c8.firebaseio.com",
+    "project_id": "message-app-4b3c8",
+    "storage_bucket": "message-app-4b3c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473805425150:android:c98a794dc0ed5295",
+        "android_client_info": {
+          "package_name": "timallen.messaging_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473805425150-2ef242buk074hn9t2mv5r800r2luj5i6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfQqGpu6ntbegWZJx8xZoUUBRH9h2tvUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473805425150-2ef242buk074hn9t2mv5r800r2luj5i6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
